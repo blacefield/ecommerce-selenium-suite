@@ -1,0 +1,16 @@
+2025-06-18 15:05:04,601 - INFO - \u2705 Logging initialized for test run.
+2025-06-18 15:05:04,925 - INFO - ====== WebDriver manager ======
+2025-06-18 15:05:05,592 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-18 15:05:05,614 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-18 15:05:05,635 - INFO - Driver [C:\Users\blace\.wdm\drivers\chromedriver\win64\137.0.7151.119\chromedriver-win32/chromedriver.exe] found in cache
+2025-06-18 15:05:06,943 - INFO - [PASS] Login succeeded for user: standard_user
+2025-06-18 15:05:09,090 - INFO - ====== WebDriver manager ======
+2025-06-18 15:05:09,773 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-18 15:05:09,795 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-18 15:05:09,811 - INFO - Driver [C:\Users\blace\.wdm\drivers\chromedriver\win64\137.0.7151.119\chromedriver-win32/chromedriver.exe] found in cache
+2025-06-18 15:05:11,153 - ERROR - [FAIL] Login failed for user: locked_out_user | Error: Epic sadface: Sorry, this user has been locked out.
+2025-06-18 15:05:11,339 - INFO - ====== WebDriver manager ======
+2025-06-18 15:05:12,032 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-18 15:05:12,055 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-18 15:05:14,117 - INFO - Driver [C:\Users\blace\.wdm\drivers\chromedriver\win64\137.0.7151.119\chromedriver-win32/chromedriver.exe] found in cache
+2025-06-18 15:05:15,433 - INFO - [PASS] Login succeeded for user: problem_user
