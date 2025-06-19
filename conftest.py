@@ -37,7 +37,7 @@ def pytest_configure(config):
     # Manually write the header
     with open(log_file_path, "w", encoding="utf-8") as f:
         f.write("\n\n")
-        f.write(f"{test_name_upper}\n")
+        f.write(f"{test_name_upper} TEST\n")
         f.write("\n")
 
     # Set up logging to file, appending below the header
@@ -50,4 +50,4 @@ def pytest_configure(config):
     logger.setLevel(logging.INFO)
     logger.addHandler(file_handler)
 
-    logging.info("✅ Logging initialized with full output.")
+    logging.info("Logging initialized with full output.")
