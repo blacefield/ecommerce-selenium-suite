@@ -1,0 +1,20 @@
+
+
+INVENTORY TEST
+
+2025-06-24 12:51:40,180 - INFO - Logging initialized with full output.
+2025-06-24 12:51:40,647 - INFO - Logged in as standard_user
+2025-06-24 12:51:40,647 - INFO - ====== WebDriver manager ======
+2025-06-24 12:51:41,431 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-24 12:51:41,468 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-24 12:51:41,488 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-24 12:51:41,548 - INFO - WebDriver version 137.0.7151.119 selected
+2025-06-24 12:51:41,550 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/137.0.7151.119/win32/chromedriver-win32.zip
+2025-06-24 12:51:41,550 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/137.0.7151.119/win32/chromedriver-win32.zip
+2025-06-24 12:51:41,578 - INFO - Driver downloading response is 200
+2025-06-24 12:51:41,680 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-24 12:51:41,919 - INFO - Driver has been saved in cache [C:\Users\blace\.wdm\drivers\chromedriver\win64\137.0.7151.119]
+2025-06-24 12:51:43,472 - INFO - Inventory items loaded successfully.
+2025-06-24 12:51:43,477 - INFO - Expected 6 inventory items, found 6
+2025-06-24 12:51:43,503 - INFO - First item name: Sauce Labs Backpack, price: $29.99
+2025-06-24 12:51:43,503 - INFO - All inventory checks passed !!!
