@@ -6,13 +6,13 @@ This project was created as part of a QA Automation Engineer portfolio to demons
 - Highlight abilities across data-driven testing, CI/CD readiness, and modular architecture
 
 ### Structure:
-- `pages/`: Page Object Models for different parts of the site
-- `tests/`: Organized test cases (basic and data-driven)
+- `pages/`: Page Object Models (POM) for different parts of the site
+- `tests/`: Organized test cases
 - `data/`: Test data in JSON format
 - `utils/`: Shared helper functions
-- `logs/`: Placeholder for future logging capability
+- `logs/`: Holds 5 most recent logs per test (could be changed in the future for sake a storage)
 
 ### To Run:
 ```bash
 pip install -r requirements.txt
-pytest tests/
+pytest tests/name_of_test.py

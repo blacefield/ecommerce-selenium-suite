@@ -1,36 +1,47 @@
-import json
 import logging
-from pages.login_page import LoginPage
 from pages.inventory_page import InventoryPage
 from pages.cart_page import CartPage
-from utils.drivers import create_driver
+from tests.login import login
+import time
 
 # Initialize logger
 logger = logging.getLogger(__name__) 
 
-def test_add_single_item_to_cart():
-    with open("data/login_data.json") as f:
-        creds = json.load(f)["users"][0]
+def test_add_items_to_cart():
+    driver = login()
+    logger.info("Login Successful!!")
 
-    driver = create_driver(False)
-    login_page = LoginPage(driver)
-    login_page.load()
-    login_page.login(creds["username"], creds["password"])
+    items = ["shirt","car","backpack"]
+    add_items_to_cart(driver, items)
 
+    driver.quit()
+
+
+def add_specific_item_to_cart(driver, item_to_add, num_cart_items=0):
     inventory_page = InventoryPage(driver)
     inventory_page.wait_for_inventory()
-    inventory_page.add_first_item_to_cart()
-
-    cart_count = inventory_page.get_cart_count()
-    logger.info(f"Cart Item Count: {cart_count}")
-    assert cart_count == "1", f"Expected cart count 1, found {cart_count}"
+    added_bool = inventory_page.add_item_to_cart_by_name(item_to_add)
+    if added_bool: 
+        logger.info(f"Item containing '{item_to_add}' added to cart.")
+    else:
+        logger.info(f"Item containing '{item_to_add}' could NOT be found.")
+        return added_bool    
 
     inventory_page.go_to_cart()
     cart_page = CartPage(driver)
-
     cart_page.wait_for_cart_items()
-    cart_page_count = cart_page.cart_count()
-    logger.info(f"Cart Page Item Count: {cart_page_count}")
-    assert cart_page_count == 1, f"Expected 1 item in cart, found {cart_page_count}"
+    expected_cart_count = num_cart_items + 1
+    assert cart_page.cart_count() == expected_cart_count, f"Expected {expected_cart_count} item in cart, found {cart_page.cart_count()}"
+    logger.info(f"{cart_page.cart_count()} items in the cart!!")
 
-    driver.quit()
+    cart_page.click_continue_shopping()
+    return added_bool
+
+
+def add_items_to_cart(driver, items_to_add):
+    num_cart_items = 0
+
+    for i, item in enumerate(items_to_add):
+        added_bool = add_specific_item_to_cart(driver, item_to_add=item, num_cart_items=num_cart_items)
+        if added_bool:
+            num_cart_items += 1

@@ -1,9 +1,0 @@
-
-
-ADD_TO_CART TEST
-
-2025-06-24 13:16:12,742 - INFO - Logging initialized with full output.
-2025-06-24 13:16:13,075 - INFO - ====== WebDriver manager ======
-2025-06-24 13:16:13,765 - INFO - Get LATEST chromedriver version for google-chrome
-2025-06-24 13:16:13,790 - INFO - Get LATEST chromedriver version for google-chrome
-2025-06-24 13:16:13,815 - INFO - Driver [C:\Users\blace\.wdm\drivers\chromedriver\win64\137.0.7151.119\chromedriver-win32/chromedriver.exe] found in cache

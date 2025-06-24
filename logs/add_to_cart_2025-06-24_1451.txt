@@ -1,0 +1,15 @@
+
+
+ADD_TO_CART TEST
+
+2025-06-24 14:51:53,695 - INFO - Logging initialized with full output.
+2025-06-24 14:51:54,030 - INFO - ====== WebDriver manager ======
+2025-06-24 14:51:54,715 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-24 14:51:54,744 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-24 14:51:54,761 - INFO - Driver [C:\Users\blace\.wdm\drivers\chromedriver\win64\137.0.7151.119\chromedriver-win32/chromedriver.exe] found in cache
+2025-06-24 14:51:56,026 - INFO - Login Successful!!
+2025-06-24 14:51:56,091 - INFO - Item containing 'shirt' added to cart.
+2025-06-24 14:51:56,133 - INFO - 1 items in the cart!!
+2025-06-24 14:51:56,221 - INFO - Item containing 'car' could NOT be found.
+2025-06-24 14:51:56,259 - INFO - Item containing 'backpack' added to cart.
+2025-06-24 14:51:56,295 - INFO - 2 items in the cart!!

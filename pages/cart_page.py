@@ -7,6 +7,7 @@ class CartPage:
         self.driver = driver
         self.cart_item = (By.CLASS_NAME, "cart_item")
         self.checkout_button = (By.ID, "checkout")
+        self.continue_shopping_button = (By.ID, "continue-shopping")
 
     def wait_for_cart_items(self, wait_time=10):
         WebDriverWait(self.driver, wait_time).until(
@@ -16,10 +17,16 @@ class CartPage:
     def get_cart_items(self):
         return self.driver.find_elements(*self.cart_item)
 
+    
+    def cart_count(self):
+        return len(self.get_cart_items())
+    
     def click_checkout(self):
         WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable(self.checkout_button)
         ).click()
 
-    def cart_count(self):
-        return len(self.get_cart_items())
+    def click_continue_shopping(self):
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(self.continue_shopping_button)
+        ).click()
