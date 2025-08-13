@@ -1,0 +1,68 @@
+{
+  "valid_checkout_info": [
+    {
+      "first_name": "John",
+      "last_name": "Doe", 
+      "postal_code": "12345"
+    },
+    {
+      "first_name": "Jane",
+      "last_name": "Smith",
+      "postal_code": "54321"
+    },
+    {
+      "first_name": "Brandon",
+      "last_name": "Lacefield",
+      "postal_code": "98765"
+    }
+  ],
+  "invalid_checkout_info": [
+    {
+      "first_name": "",
+      "last_name": "Doe",
+      "postal_code": "12345",
+      "expected_error": "Error: First Name is required"
+    },
+    {
+      "first_name": "John",
+      "last_name": "",
+      "postal_code": "12345", 
+      "expected_error": "Error: Last Name is required"
+    },
+    {
+      "first_name": "John",
+      "last_name": "Doe",
+      "postal_code": "",
+      "expected_error": "Error: Postal Code is required"
+    }
+  ],
+  "e2e_test_scenarios": [
+    {
+      "test_name": "single_item_purchase",
+      "items_to_add": ["backpack"],
+      "customer_info": {
+        "first_name": "Test",
+        "last_name": "User", 
+        "postal_code": "12345"
+      }
+    },
+    {
+      "test_name": "multiple_items_purchase",
+      "items_to_add": ["backpack", "shirt", "bike"],
+      "customer_info": {
+        "first_name": "Multi",
+        "last_name": "Buyer",
+        "postal_code": "67890"
+      }
+    },
+    {
+      "test_name": "all_items_purchase",
+      "items_to_add": ["backpack", "bike", "shirt", "jacket", "onesie", "light"],
+      "customer_info": {
+        "first_name": "Power",
+        "last_name": "Shopper",
+        "postal_code": "99999"
+      }
+    }
+  ]
+}
