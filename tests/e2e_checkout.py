@@ -12,10 +12,11 @@ logger = logging.getLogger(__name__)
 class TestE2ECheckoutFlow:
     """Complete End-to-End test suite for the full purchase journey"""
     
-    @pytest.fixture
-    def authenticated_driver(self):
-        """Fixture that provides an authenticated driver session"""
-        driver = login(headless=True)
+    @pytest.fixture(params=["chrome","firefox","edge"])
+    def authenticated_driver(self, request):
+        """Fixture that provides an authenticated driver session for multiple browsers"""
+        browser = request.param
+        driver = login(browser, True)
         yield driver
         driver.quit()
     

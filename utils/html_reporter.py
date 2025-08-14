@@ -13,7 +13,8 @@ class HTMLReportGenerator:
         self.end_time = None
         
     def add_test_result(self, test_name: str, status: str, duration: float = 0, 
-                       details: str = "", error_message: str = "", screenshot_path: str = ""):
+                       details: str = "", error_message: str = "", screenshot_path: str = "", 
+                       browser: str = ""):
         """Add a test result to the report"""
         self.test_results.append({
             'name': test_name,
@@ -22,7 +23,8 @@ class HTMLReportGenerator:
             'details': details,
             'error_message': error_message,
             'screenshot_path': screenshot_path,
-            'timestamp': datetime.now().isoformat()
+            'timestamp': datetime.now().isoformat(),
+            'browser': browser.lower() if browser else ""
         })
     
     def set_session_times(self, start_time: datetime, end_time: datetime):
@@ -61,6 +63,10 @@ class HTMLReportGenerator:
                                pass_rate: float, total_duration: float) -> str:
         """Generate the complete HTML template"""
         
+         # Calculate browser statistics
+        browser_stats = self._get_browser_statistics()
+        browser_summary_cards = self._generate_browser_summary_cards(browser_stats)
+        
         # Test results table rows
         test_rows = ""
         for i, result in enumerate(self.test_results, 1):
@@ -68,6 +74,11 @@ class HTMLReportGenerator:
             status_icon = self._get_status_icon(result['status'])
             duration_str = f"{result['duration']:.2f}s" if result['duration'] > 0 else "N/A"
             
+             # Add browser icon to the display name
+            browser = result.get('browser', 'unknown')
+            browser_icon = self._get_browser_icon(browser)
+            display_name = result['name']
+
             error_details = ""
             if result['error_message']:
                 error_details = f"""
@@ -77,9 +88,12 @@ class HTMLReportGenerator:
                 """
             
             test_rows += f"""
-            <tr class="test-row {status_class}" onclick="toggleDetails({i})">
+            <tr class="test-row {status_class}" data-browser="{browser}"onclick="toggleDetails({i})">
                 <td>{i}</td>
-                <td class="test-name">{result['name']}</td>
+                <td class="test-name">
+                    <span class="browser-icon">{browser_icon}</span>
+                    {display_name}
+                </td>
                 <td class="status {status_class}">
                     <span class="status-icon">{status_icon}</span>
                     {result['status']}
@@ -87,7 +101,7 @@ class HTMLReportGenerator:
                 <td>{duration_str}</td>
                 <td>{result.get('timestamp', '').split('T')[1][:8] if result.get('timestamp') else 'N/A'}</td>
             </tr>
-            <tr class="details-row" id="details-{i}" style="display: none;">
+            <tr class="details-row" id="details-{i}" data-browser="{browser}"style="display: none;">
                 <td colspan="5">
                     <div class="test-details">
                         {result['details']}
@@ -103,7 +117,7 @@ class HTMLReportGenerator:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{self.project_name} - Test Report</title>
+    <title>{self.project_name} - Cross-Browser Test Report</title>
     <style>
         {self._get_css_styles()}
     </style>
@@ -112,10 +126,11 @@ class HTMLReportGenerator:
     <div class="container">
         <header>
             <h1>{self.project_name}</h1>
-            <h2>Test Execution Report</h2>
+            <h2>Cross-Browser Test Execution Report</h2>
             <div class="report-meta">
                 <span>Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</span>
                 <span>Duration: {total_duration:.2f}s</span>
+                <span>Browsers: {len(browser_stats)} tested</span>
             </div>
         </header>
 
@@ -145,8 +160,16 @@ class HTMLReportGenerator:
             </div>
         </div>
 
+        {browser_summary_cards}
+
         <div class="test-results">
-            <h3>Test Results</h3>
+            <h3>Test Results by Browser</h3>
+             <div class="browser-filter">
+                <button class="filter-btn active" onclick="filterByBrowser('all')">All Browsers</button>
+                <button class="filter-btn" onclick="filterByBrowser('chrome')">🟡 Chrome</button>
+                <button class="filter-btn" onclick="filterByBrowser('firefox')">🟠 Firefox</button>
+                <button class="filter-btn" onclick="filterByBrowser('edge')">🔵 Edge</button>
+            </div>
             <table class="results-table">
                 <thead>
                     <tr>
@@ -157,7 +180,7 @@ class HTMLReportGenerator:
                         <th>Time</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="test-results-body">
                     {test_rows}
                 </tbody>
             </table>
@@ -171,6 +194,79 @@ class HTMLReportGenerator:
 </html>
         """
     
+    def _get_browser_statistics(self):
+        """Calculate statistics per browser"""
+        browser_stats = {}
+        for result in self.test_results:
+            browser = result.get('browser', 'unknown')
+            if browser not in browser_stats:
+                browser_stats[browser] = {'total': 0, 'passed': 0, 'failed': 0, 'skipped': 0}
+            
+            browser_stats[browser]['total'] += 1
+            if result['status'] == 'PASSED':
+                browser_stats[browser]['passed'] += 1
+            elif result['status'] == 'FAILED':
+                browser_stats[browser]['failed'] += 1
+            elif result['status'] == 'SKIPPED':
+                browser_stats[browser]['skipped'] += 1
+        
+        return browser_stats
+    
+    def _generate_browser_summary_cards(self, browser_stats):
+        """Generate browser-specific summary cards"""
+        if not browser_stats:
+            return ""
+        
+        cards_html = '<div class="browser-summary-cards"><h3>Browser Performance</h3><div class="browser-cards">'
+        
+        for browser, stats in browser_stats.items():
+            if browser == 'unknown':
+                continue
+                
+            browser_icon = self._get_browser_icon(browser)
+            pass_rate = (stats['passed'] / stats['total'] * 100) if stats['total'] > 0 else 0
+            
+            cards_html += f"""
+            <div class="browser-card">
+                <div class="browser-header">
+                    <span class="browser-icon-large">{browser_icon}</span>
+                    <h4>{browser.title()}</h4>
+                </div>
+                <div class="browser-stats">
+                    <div class="stat">
+                        <span class="stat-number">{stats['total']}</span>
+                        <span class="stat-label">Total</span>
+                    </div>
+                    <div class="stat passed">
+                        <span class="stat-number">{stats['passed']}</span>
+                        <span class="stat-label">Passed</span>
+                    </div>
+                    <div class="stat failed">
+                        <span class="stat-number">{stats['failed']}</span>
+                        <span class="stat-label">Failed</span>
+                    </div>
+                </div>
+                <div class="browser-pass-rate">
+                    <span>{pass_rate:.1f}% Pass Rate</span>
+                    <div class="mini-progress-bar">
+                        <div class="mini-progress-fill" style="width: {pass_rate}%"></div>
+                    </div>
+                </div>
+            </div>
+            """
+        
+        cards_html += '</div></div>'
+        return cards_html
+    
+    def _get_browser_icon(self, browser):
+        """Get emoji icon for browser"""
+        icons = {
+            'chrome': '🟡',
+            'firefox': '🟠', 
+            'edge': '🔵'
+        }
+        return icons.get(browser.lower(), '🌐')
+
     def _get_status_icon(self, status: str) -> str:
         """Get icon for test status"""
         icons = {
@@ -391,6 +487,125 @@ class HTMLReportGenerator:
                 padding: 10px 8px;
             }
         }
+        .browser-summary-cards {
+            padding: 0 30px;
+            background: #f8f9fa;
+        }
+        
+        .browser-summary-cards h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+        
+        .browser-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .browser-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .browser-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .browser-icon-large {
+            font-size: 2em;
+            margin-right: 10px;
+        }
+        
+        .browser-header h4 {
+            color: #2c3e50;
+            font-size: 1.2em;
+        }
+        
+        .browser-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #3498db;
+        }
+        
+        .stat.passed .stat-number { color: #27ae60; }
+        .stat.failed .stat-number { color: #e74c3c; }
+        
+        .stat-label {
+            font-size: 0.8em;
+            color: #666;
+            text-transform: uppercase;
+        }
+        
+        .browser-pass-rate {
+            text-align: center;
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        .mini-progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #ecf0f1;
+            border-radius: 2px;
+            margin-top: 5px;
+        }
+        
+        .mini-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #27ae60, #2ecc71);
+            border-radius: 2px;
+        }
+        
+        .browser-filter {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .filter-btn {
+            background: #ecf0f1;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .filter-btn:hover {
+            background: #bdc3c7;
+        }
+        
+        .filter-btn.active {
+            background: #3498db;
+            color: white;
+        }
+        
+        .browser-icon {
+            margin-right: 8px;
+            font-size: 1.1em;
+        }
+        
+        .test-row[data-browser="chrome"] { border-left-color: #FFC107; }
+        .test-row[data-browser="firefox"] { border-left-color: #FF9800; }
+        .test-row[data-browser="edge"] { border-left-color: #2196F3; }
         """
     
     def _get_javascript(self) -> str:
@@ -404,7 +619,34 @@ class HTMLReportGenerator:
                 detailsRow.style.display = 'none';
             }
         }
-        
+
+        function filterByBrowser(browser) {
+            console.log('Filtering by browser:', browser);
+            
+            const allRows = document.querySelectorAll('#test-results-body tr');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Update active button
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Filter rows based on data-browser attribute
+            allRows.forEach(row => {
+                const rowBrowser = row.getAttribute('data-browser');
+                
+                if (browser === 'all' || rowBrowser === browser) {
+                    row.style.display = 'table-row';
+                } else {
+                    row.style.display = 'none';
+                }
+                
+                // Always hide details rows when filtering
+                if (row.classList.contains('details-row')) {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
         // Add smooth scrolling
         document.addEventListener('DOMContentLoaded', function() {
             const cards = document.querySelectorAll('.card');

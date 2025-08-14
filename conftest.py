@@ -90,12 +90,23 @@ def pytest_runtest_setup(item):
     global _test_start_times
     test_name = item.name
     _test_start_times[test_name] = time.time()
-    logging.info(f"🚀 Starting: {test_name}")
+    
+    # Extract browser info for better logging
+    browser = _extract_browser_from_test(test_name)
+    if browser:
+        logging.info(f"***** Starting ***** {_clean_test_name(test_name)} [{browser.upper()}]")
+    else:
+        logging.info(f"***** Starting ***** {test_name}")
+
 
 def pytest_runtest_teardown(item, nextitem):
     """Called after each test completes"""
     test_name = item.name
-    logging.info(f"🏁 Finished: {test_name}")
+    browser = _extract_browser_from_test(test_name)
+    if browser:
+        logging.info(f"🏁 Finished: {_clean_test_name(test_name)} [{browser.upper()}]")
+    else:
+        logging.info(f"🏁 Finished: {test_name}")
 
 def pytest_runtest_logreport(report):
     """Called when a test report is created"""
@@ -104,6 +115,10 @@ def pytest_runtest_logreport(report):
     if report.when == "call":  # Only process main test execution
         test_name = report.nodeid.split("::")[-1]
         
+        # Extract browser and clean test name
+        browser = _extract_browser_from_test(test_name)
+        clean_name = _clean_test_name(test_name)
+
         # Calculate test duration
         duration = 0
         if test_name in _test_start_times:
@@ -113,7 +128,10 @@ def pytest_runtest_logreport(report):
         # Determine status and collect details
         status = "PASSED"
         error_message = ""
-        details = f"Test: {test_name}\nDuration: {duration:.2f}s"
+        details = f"Test: {clean_name}\nDuration: {duration:.2f}s"
+
+        if browser:
+            details += f"\nBrowser: {browser.title()}"
         
         if report.failed:
             status = "FAILED"
@@ -126,23 +144,39 @@ def pytest_runtest_logreport(report):
                     if ('assert' in line.lower() or 'error:' in line.lower()) and line:
                         details += f"\nError: {line}"
                         break
-            logging.error(f"❌ FAILED: {test_name}")
+            # Enhanced logging with browser info
+            if browser:
+                logging.error(f"❌ FAILED: {clean_name} [{browser.upper()}]")
+            else:
+                logging.error(f"❌ FAILED: {test_name}")
+
         elif report.skipped:
             status = "SKIPPED"
             if hasattr(report, 'wasxfail'):
                 details += f"\nReason: {report.wasxfail}"
-            logging.warning(f"⚠️  SKIPPED: {test_name}")
+            if browser:
+                logging.warning(f"⚠️  SKIPPED: {clean_name} [{browser.upper()}]")
+            else:
+                logging.warning(f"⚠️  SKIPPED: {test_name}")
+
         else:
-            logging.info(f"✅ PASSED: {test_name}")
-        
+            if browser:
+                logging.info(f"✅ PASSED: {clean_name} [{browser.upper()}]")
+            else:
+                logging.info(f"✅ PASSED: {test_name}")
+
+        # Create display name with browser info for HTML report
+        display_name = f"{clean_name} [{browser.upper()}]" if browser else test_name
+
         # Add to HTML reporter
         if _html_reporter:
             _html_reporter.add_test_result(
-                test_name=test_name,
+                test_name=display_name,
                 status=status,
                 duration=duration,
                 details=details,
-                error_message=error_message[:1000] if error_message else ""  # Limit error length
+                error_message=error_message[:1000] if error_message else "",  # Limit error length
+                browser=browser or "unknown"
             )
 
 def pytest_sessionfinish(session, exitstatus):
@@ -187,3 +221,16 @@ def pytest_sessionfinish(session, exitstatus):
             print(f"❌ HTML report generation failed: {str(e)}")
     
     logging.info("=" * 60)
+
+def _extract_browser_from_test(test_name):
+    """Extract browser name from parametrized test names like 'test_name[chrome]'"""
+    import re
+    match = re.search(r'\[([^\]]+)\]$', test_name)
+    if match:
+        return match.group(1).lower()
+    return None
+
+def _clean_test_name(test_name):
+    """Remove browser parameter from test name for cleaner display"""
+    import re
+    return re.sub(r'\[([^\]]+)\]$', '', test_name)

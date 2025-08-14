@@ -1,0 +1,504 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selenium E2E Test Suite - Test Report</title>
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header h2 {
+            font-size: 1.3em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .report-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+        
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 30px;
+            background: #f8f9fa;
+        }
+        
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        
+        .card:hover {
+            transform: translateY(-2px);
+        }
+        
+        .card h3 {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .card .number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .card.total .number { color: #3498db; }
+        .card.passed .number { color: #27ae60; }
+        .card.failed .number { color: #e74c3c; }
+        .card.skipped .number { color: #f39c12; }
+        .card.pass-rate .number { color: #9b59b6; }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #ecf0f1;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #27ae60, #2ecc71);
+            transition: width 0.3s ease;
+        }
+        
+        .test-results {
+            padding: 30px;
+        }
+        
+        .test-results h3 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+            font-size: 1.5em;
+        }
+        
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .results-table th {
+            background: #34495e;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .results-table td {
+            padding: 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .test-row {
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .test-row:hover {
+            background: #f8f9fa;
+        }
+        
+        .test-row.passed {
+            border-left: 4px solid #27ae60;
+        }
+        
+        .test-row.failed {
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .test-row.skipped {
+            border-left: 4px solid #f39c12;
+        }
+        
+        .status {
+            font-weight: bold;
+        }
+        
+        .status.passed { color: #27ae60; }
+        .status.failed { color: #e74c3c; }
+        .status.skipped { color: #f39c12; }
+        
+        .status-icon {
+            margin-right: 8px;
+        }
+        
+        .test-name {
+            font-weight: 500;
+        }
+        
+        .details-row {
+            background: #f8f9fa;
+        }
+        
+        .test-details {
+            padding: 20px;
+            background: white;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        
+        .error-details pre {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .summary-cards {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .results-table {
+                font-size: 0.9em;
+            }
+            
+            .results-table th,
+            .results-table td {
+                padding: 10px 8px;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Selenium E2E Test Suite</h1>
+            <h2>Test Execution Report</h2>
+            <div class="report-meta">
+                <span>Generated: 2025-08-14 14:57:55</span>
+                <span>Duration: 55.15s</span>
+            </div>
+        </header>
+
+        <div class="summary-cards">
+            <div class="card total">
+                <h3>Total Tests</h3>
+                <div class="number">8</div>
+            </div>
+            <div class="card passed">
+                <h3>Passed</h3>
+                <div class="number">6</div>
+            </div>
+            <div class="card failed">
+                <h3>Failed</h3>
+                <div class="number">2</div>
+            </div>
+            <div class="card skipped">
+                <h3>Skipped</h3>
+                <div class="number">0</div>
+            </div>
+            <div class="card pass-rate">
+                <h3>Pass Rate</h3>
+                <div class="number">75.0%</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 75.0%"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-results">
+            <h3>Test Results</h3>
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Test Name</th>
+                        <th>Status</th>
+                        <th>Duration</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+            <tr class="test-row passed" onclick="toggleDetails(1)">
+                <td>1</td>
+                <td class="test-name">test_single_item_e2e_purchase[chrome]</td>
+                <td class="status passed">
+                    <span class="status-icon">✅</span>
+                    PASSED
+                </td>
+                <td>7.67s</td>
+                <td>14:52:38</td>
+            </tr>
+            <tr class="details-row" id="details-1" style="display: none;">
+                <td colspan="5">
+                    <div class="test-details">
+                        Test: test_single_item_e2e_purchase[chrome]
+Duration: 7.67s
+                        
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="test-row passed" onclick="toggleDetails(2)">
+                <td>2</td>
+                <td class="test-name">test_multiple_items_e2e_purchase[chrome]</td>
+                <td class="status passed">
+                    <span class="status-icon">✅</span>
+                    PASSED
+                </td>
+                <td>7.59s</td>
+                <td>14:53:20</td>
+            </tr>
+            <tr class="details-row" id="details-2" style="display: none;">
+                <td colspan="5">
+                    <div class="test-details">
+                        Test: test_multiple_items_e2e_purchase[chrome]
+Duration: 7.59s
+                        
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="test-row failed" onclick="toggleDetails(3)">
+                <td>3</td>
+                <td class="test-name">test_checkout_validation_errors[chrome]</td>
+                <td class="status failed">
+                    <span class="status-icon">❌</span>
+                    FAILED
+                </td>
+                <td>7.47s</td>
+                <td>14:54:01</td>
+            </tr>
+            <tr class="details-row" id="details-3" style="display: none;">
+                <td colspan="5">
+                    <div class="test-details">
+                        Test: test_checkout_validation_errors[chrome]
+Duration: 7.47s
+Error: assert add_result['success'], "Failed to add item for validation test"
+                        
+                <div class="error-details" style="display: none;">
+                    <pre>self = <tests.e2e_checkout.TestE2ECheckoutFlow object at 0x00000223A648ED10>
+authenticated_driver = <selenium.webdriver.chrome.webdriver.WebDriver (session="3a048842652a47b033e064e614299f03")>
+checkout_data = {'e2e_test_scenarios': [{'customer_info': {'first_name': 'Test', 'last_name': 'User', 'postal_code': '12345'}, 'items_..._name': 'Smith', 'postal_code': '54321'}, {'first_name': 'Brandon', 'last_name': 'Lacefield', 'postal_code': '98765'}]}
+
+    def test_checkout_validation_errors(self, authenticated_driver, checkout_data):
+        """Test checkout form validation with invalid data"""
+        driver = authenticated_driver
+    
+        logger.info("🚨 Testing checkout form validation")
+    
+        # Step 1: Add an item to cart first
+        cart_helper = CartHelper(driver)
+        add_result = cart_helper.add_items_to_cart(["backpack"])
+        assert add_result['success'], "Failed to add item for validation test"
+    
+        # Step 2: Proceed to checkout
+        checkout_success </pre>
+                </div>
+                
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="test-row passed" onclick="toggleDetails(4)">
+                <td>4</td>
+                <td class="test-name">test_parameterized_e2e_scenarios[chrome-0]</td>
+                <td class="status passed">
+                    <span class="status-icon">✅</span>
+                    PASSED
+                </td>
+                <td>7.42s</td>
+                <td>14:54:42</td>
+            </tr>
+            <tr class="details-row" id="details-4" style="display: none;">
+                <td colspan="5">
+                    <div class="test-details">
+                        Test: test_parameterized_e2e_scenarios[chrome-0]
+Duration: 7.42s
+                        
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="test-row passed" onclick="toggleDetails(5)">
+                <td>5</td>
+                <td class="test-name">test_parameterized_e2e_scenarios[chrome-1]</td>
+                <td class="status passed">
+                    <span class="status-icon">✅</span>
+                    PASSED
+                </td>
+                <td>7.51s</td>
+                <td>14:54:51</td>
+            </tr>
+            <tr class="details-row" id="details-5" style="display: none;">
+                <td colspan="5">
+                    <div class="test-details">
+                        Test: test_parameterized_e2e_scenarios[chrome-1]
+Duration: 7.51s
+                        
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="test-row failed" onclick="toggleDetails(6)">
+                <td>6</td>
+                <td class="test-name">test_parameterized_e2e_scenarios[chrome-2]</td>
+                <td class="status failed">
+                    <span class="status-icon">❌</span>
+                    FAILED
+                </td>
+                <td>7.63s</td>
+                <td>14:55:01</td>
+            </tr>
+            <tr class="details-row" id="details-6" style="display: none;">
+                <td colspan="5">
+                    <div class="test-details">
+                        Test: test_parameterized_e2e_scenarios[chrome-2]
+Duration: 7.63s
+Error: >           assert checkout_result['success'], f"Parameterized test failed for {scenario['test_name']}"
+                        
+                <div class="error-details" style="display: none;">
+                    <pre>self = <tests.e2e_checkout.TestE2ECheckoutFlow object at 0x00000223A649CB10>
+authenticated_driver = <selenium.webdriver.chrome.webdriver.WebDriver (session="9b58b79b6c0920ef9124cafcadaf3ded")>
+checkout_data = {'e2e_test_scenarios': [{'customer_info': {'first_name': 'Test', 'last_name': 'User', 'postal_code': '12345'}, 'items_..._name': 'Smith', 'postal_code': '54321'}, {'first_name': 'Brandon', 'last_name': 'Lacefield', 'postal_code': '98765'}]}
+scenario_index = 2
+
+    @pytest.mark.parametrize("scenario_index", [0, 1, 2])
+    def test_parameterized_e2e_scenarios(self, authenticated_driver, checkout_data, scenario_index):
+        """Parameterized test for all E2E scenarios"""
+        driver = authenticated_driver
+    
+        scenario = checkout_data["e2e_test_scenarios"][scenario_index]
+        items_to_add = scenario["items_to_add"]
+        customer_info = scenario["customer_info"]
+    
+        logger.info(f"🔄 Running parameterized E2E test: {scenario['test_name']}")
+    
+        # Co</pre>
+                </div>
+                
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="test-row passed" onclick="toggleDetails(7)">
+                <td>7</td>
+                <td class="test-name">test_cart_to_inventory_navigation[chrome]</td>
+                <td class="status passed">
+                    <span class="status-icon">✅</span>
+                    PASSED
+                </td>
+                <td>2.28s</td>
+                <td>14:56:40</td>
+            </tr>
+            <tr class="details-row" id="details-7" style="display: none;">
+                <td colspan="5">
+                    <div class="test-details">
+                        Test: test_cart_to_inventory_navigation[chrome]
+Duration: 2.28s
+                        
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="test-row passed" onclick="toggleDetails(8)">
+                <td>8</td>
+                <td class="test-name">test_checkout_overview_calculations[chrome]</td>
+                <td class="status passed">
+                    <span class="status-icon">✅</span>
+                    PASSED
+                </td>
+                <td>7.57s</td>
+                <td>14:57:21</td>
+            </tr>
+            <tr class="details-row" id="details-8" style="display: none;">
+                <td colspan="5">
+                    <div class="test-details">
+                        Test: test_checkout_overview_calculations[chrome]
+Duration: 7.57s
+                        
+                    </div>
+                </td>
+            </tr>
+            
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        
+        function toggleDetails(rowNum) {
+            const detailsRow = document.getElementById('details-' + rowNum);
+            if (detailsRow.style.display === 'none') {
+                detailsRow.style.display = 'table-row';
+            } else {
+                detailsRow.style.display = 'none';
+            }
+        }
+        
+        // Add smooth scrolling
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    document.querySelector('.test-results').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+        
+    </script>
+</body>
+</html>
+        
