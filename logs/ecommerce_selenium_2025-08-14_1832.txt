@@ -1,0 +1,18 @@
+
+ECOMMERCE_SELENIUM TEST SESSION
+Started: 2025-08-14 18:32:17
+============================================================
+
+2025-08-14 18:32:17,600 - INFO - Logging and HTML reporting initialized.
+2025-08-14 18:32:17,606 - INFO - Test session started with 1 test file(s)
+2025-08-14 18:32:17,639 - INFO - ============================================================
+2025-08-14 18:32:17,640 - INFO - TEST SESSION SUMMARY
+2025-08-14 18:32:17,640 - INFO - ============================================================
+2025-08-14 18:32:17,640 - INFO - Total Tests: 0
+2025-08-14 18:32:17,640 - INFO - Passed: 0
+2025-08-14 18:32:17,640 - INFO - Failed: 0
+2025-08-14 18:32:17,640 - INFO - Duration: 0.04s
+2025-08-14 18:32:17,640 - INFO - Exit Status: 5
+2025-08-14 18:32:17,640 - INFO - Session finished: 2025-08-14 18:32:17
+2025-08-14 18:32:17,641 - INFO - 📊 HTML Report: C:\Users\blace\repos\ecommerce_selenium\reports\ecommerce_selenium_report_2025-08-14_1832.html
+2025-08-14 18:32:17,642 - INFO - ============================================================

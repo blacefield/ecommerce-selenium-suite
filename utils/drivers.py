@@ -90,5 +90,5 @@ def _create_edge_driver(headless=True):
     }
     options.add_experimental_option("prefs", preferences)
     
-    service = EdgeService(EdgeChromiumDriverManager().install())
+    service = EdgeService("C:\WebDrivers\msedgedriver.exe") #(EdgeChromiumDriverManager().install())  Getting issues installing msedgedriver here so pointed it to the local version
     return webdriver.Edge(service=service, options=options)

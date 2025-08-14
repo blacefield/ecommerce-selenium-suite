@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Debug Current Test (module)",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "tests.${fileBasenameNoExtension}",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": false
+}
+    ]
+}

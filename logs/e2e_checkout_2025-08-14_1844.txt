@@ -1,0 +1,95 @@
+
+E2E_CHECKOUT TEST SESSION
+Started: 2025-08-14 18:44:42
+============================================================
+
+2025-08-14 18:44:42,703 - INFO - Logging and HTML reporting initialized.
+2025-08-14 18:44:42,708 - INFO - Test session started with 1 test file(s)
+2025-08-14 18:44:42,817 - INFO - ***** Starting ***** test_single_item_e2e_purchase [CHROME]
+2025-08-14 18:44:42,819 - INFO - ====== WebDriver manager ======
+2025-08-14 18:44:43,526 - INFO - Get LATEST chromedriver version for google-chrome
+2025-08-14 18:44:43,550 - INFO - Get LATEST chromedriver version for google-chrome
+2025-08-14 18:44:43,571 - INFO - Driver [C:\Users\blace\.wdm\drivers\chromedriver\win64\139.0.7258.68\chromedriver-win32/chromedriver.exe] found in cache
+2025-08-14 18:44:44,891 - INFO - 🛒 Starting E2E test: single_item_purchase
+2025-08-14 18:44:44,899 - INFO - ✅ Verified inventory page loaded after login
+2025-08-14 18:44:44,960 - INFO - Successfully added item containing 'backpack' to cart
+2025-08-14 18:44:44,969 - INFO - Cart summary: 1 items in cart, expected 1
+2025-08-14 18:44:44,969 - INFO - ✅ Successfully added 1 items to cart
+2025-08-14 18:44:45,011 - INFO - Cart verification: Expected 1, found 1 - ✓
+2025-08-14 18:44:45,011 - INFO - ✅ Cart contents verified
+2025-08-14 18:44:45,055 - INFO - Successfully navigated to checkout page
+2025-08-14 18:44:45,055 - INFO - ✅ Successfully navigated to checkout
+2025-08-14 18:44:45,055 - INFO - Starting full checkout flow for Test User
+2025-08-14 18:44:45,182 - INFO - Filled checkout info: Test User, 12345
+2025-08-14 18:44:50,276 - INFO - Successfully completed checkout information step
+2025-08-14 18:44:50,305 - INFO - Checkout overview - Items: 1, Subtotal: $29.99, Tax: $2.40, Total: $32.39
+2025-08-14 18:44:50,343 - INFO - Clicked finish button
+2025-08-14 18:44:50,364 - INFO - Purchase completed! Message: 'Thank you for your order!'
+2025-08-14 18:44:50,364 - INFO - ✅ Full checkout flow completed successfully!
+2025-08-14 18:44:50,364 - INFO - ✅ Purchase completed! Total: $32.39
+2025-08-14 18:44:50,405 - INFO - Successfully returned to inventory from checkout complete
+2025-08-14 18:44:50,406 - INFO - ✅ Successfully returned to inventory page
+2025-08-14 18:44:50,411 - INFO - ✅ E2E test completed successfully - cart is now empty
+2025-08-14 18:44:50,411 - INFO - ✅ PASSED: test_single_item_e2e_purchase [CHROME]
+2025-08-14 18:44:50,411 - INFO - 🏁 Finished: test_single_item_e2e_purchase [CHROME]
+2025-08-14 18:44:52,552 - INFO - ***** Starting ***** test_single_item_e2e_purchase [FIREFOX]
+2025-08-14 18:44:52,552 - INFO - ====== WebDriver manager ======
+2025-08-14 18:44:53,443 - INFO - Get LATEST geckodriver version for 141.0 firefox
+2025-08-14 18:44:53,569 - INFO - Get LATEST geckodriver version for 141.0 firefox
+2025-08-14 18:44:53,636 - INFO - Driver [C:\Users\blace\.wdm\drivers\geckodriver\win64\v0.36.0\geckodriver.exe] found in cache
+2025-08-14 18:44:58,480 - INFO - 🛒 Starting E2E test: single_item_purchase
+2025-08-14 18:44:58,488 - INFO - ✅ Verified inventory page loaded after login
+2025-08-14 18:44:58,560 - INFO - Successfully added item containing 'backpack' to cart
+2025-08-14 18:44:58,566 - INFO - Cart summary: 1 items in cart, expected 1
+2025-08-14 18:44:58,566 - INFO - ✅ Successfully added 1 items to cart
+2025-08-14 18:44:58,627 - INFO - Cart verification: Expected 1, found 1 - ✓
+2025-08-14 18:44:58,627 - INFO - ✅ Cart contents verified
+2025-08-14 18:44:58,693 - INFO - Successfully navigated to checkout page
+2025-08-14 18:44:58,693 - INFO - ✅ Successfully navigated to checkout
+2025-08-14 18:44:58,693 - INFO - Starting full checkout flow for Test User
+2025-08-14 18:44:58,731 - INFO - Filled checkout info: Test User, 12345
+2025-08-14 18:45:03,820 - INFO - Successfully completed checkout information step
+2025-08-14 18:45:03,836 - INFO - Checkout overview - Items: 1, Subtotal: $29.99, Tax: $2.40, Total: $32.39
+2025-08-14 18:45:03,900 - INFO - Clicked finish button
+2025-08-14 18:45:03,909 - INFO - Purchase completed! Message: 'Thank you for your order!'
+2025-08-14 18:45:03,909 - INFO - ✅ Full checkout flow completed successfully!
+2025-08-14 18:45:03,909 - INFO - ✅ Purchase completed! Total: $32.39
+2025-08-14 18:45:03,975 - INFO - Successfully returned to inventory from checkout complete
+2025-08-14 18:45:03,975 - INFO - ✅ Successfully returned to inventory page
+2025-08-14 18:45:03,977 - INFO - ✅ E2E test completed successfully - cart is now empty
+2025-08-14 18:45:03,977 - INFO - ✅ PASSED: test_single_item_e2e_purchase [FIREFOX]
+2025-08-14 18:45:03,977 - INFO - 🏁 Finished: test_single_item_e2e_purchase [FIREFOX]
+2025-08-14 18:45:06,589 - INFO - ***** Starting ***** test_single_item_e2e_purchase [EDGE]
+2025-08-14 18:45:07,995 - INFO - 🛒 Starting E2E test: single_item_purchase
+2025-08-14 18:45:08,004 - INFO - ✅ Verified inventory page loaded after login
+2025-08-14 18:45:08,055 - INFO - Successfully added item containing 'backpack' to cart
+2025-08-14 18:45:08,065 - INFO - Cart summary: 1 items in cart, expected 1
+2025-08-14 18:45:08,065 - INFO - ✅ Successfully added 1 items to cart
+2025-08-14 18:45:08,113 - INFO - Cart verification: Expected 1, found 1 - ✓
+2025-08-14 18:45:08,114 - INFO - ✅ Cart contents verified
+2025-08-14 18:45:08,160 - INFO - Successfully navigated to checkout page
+2025-08-14 18:45:08,160 - INFO - ✅ Successfully navigated to checkout
+2025-08-14 18:45:08,160 - INFO - Starting full checkout flow for Test User
+2025-08-14 18:45:08,295 - INFO - Filled checkout info: Test User, 12345
+2025-08-14 18:45:13,403 - INFO - Successfully completed checkout information step
+2025-08-14 18:45:13,433 - INFO - Checkout overview - Items: 1, Subtotal: $29.99, Tax: $2.40, Total: $32.39
+2025-08-14 18:45:13,480 - INFO - Clicked finish button
+2025-08-14 18:45:13,503 - INFO - Purchase completed! Message: 'Thank you for your order!'
+2025-08-14 18:45:13,503 - INFO - ✅ Full checkout flow completed successfully!
+2025-08-14 18:45:13,503 - INFO - ✅ Purchase completed! Total: $32.39
+2025-08-14 18:45:13,553 - INFO - Successfully returned to inventory from checkout complete
+2025-08-14 18:45:13,553 - INFO - ✅ Successfully returned to inventory page
+2025-08-14 18:45:13,558 - INFO - ✅ E2E test completed successfully - cart is now empty
+2025-08-14 18:45:13,559 - INFO - ✅ PASSED: test_single_item_e2e_purchase [EDGE]
+2025-08-14 18:45:13,559 - INFO - 🏁 Finished: test_single_item_e2e_purchase [EDGE]
+2025-08-14 18:45:15,700 - INFO - ============================================================
+2025-08-14 18:45:15,700 - INFO - TEST SESSION SUMMARY
+2025-08-14 18:45:15,700 - INFO - ============================================================
+2025-08-14 18:45:15,700 - INFO - Total Tests: 3
+2025-08-14 18:45:15,700 - INFO - Passed: 3
+2025-08-14 18:45:15,701 - INFO - Failed: 0
+2025-08-14 18:45:15,701 - INFO - Duration: 33.00s
+2025-08-14 18:45:15,701 - INFO - Exit Status: 0
+2025-08-14 18:45:15,701 - INFO - Session finished: 2025-08-14 18:45:15
+2025-08-14 18:45:15,702 - INFO - 📊 HTML Report: C:\Users\blace\repos\ecommerce_selenium\reports\e2e_checkout_report_2025-08-14_1844.html
+2025-08-14 18:45:15,702 - INFO - ============================================================
