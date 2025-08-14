@@ -1,0 +1,31 @@
+
+ADD_TO_CART TEST SESSION
+Started: 2025-08-14 13:20:35
+============================================================
+
+2025-08-14 13:20:35,166 - INFO - Logging and HTML reporting initialized.
+2025-08-14 13:20:35,172 - INFO - Test session started with 1 test file(s)
+2025-08-14 13:20:35,265 - INFO - 🚀 Starting: test_add_items_to_cart
+2025-08-14 13:20:35,266 - INFO - ====== WebDriver manager ======
+2025-08-14 13:20:35,964 - INFO - Get LATEST chromedriver version for google-chrome
+2025-08-14 13:20:35,992 - INFO - Get LATEST chromedriver version for google-chrome
+2025-08-14 13:20:36,011 - INFO - Driver [C:\Users\blace\.wdm\drivers\chromedriver\win64\139.0.7258.68\chromedriver-win32/chromedriver.exe] found in cache
+2025-08-14 13:20:37,395 - INFO - Login Successful!!
+2025-08-14 13:20:37,466 - INFO - Item containing 'shirt' added to cart.
+2025-08-14 13:20:37,515 - INFO - 1 items in the cart!!
+2025-08-14 13:20:37,608 - INFO - Item containing 'car' could NOT be found.
+2025-08-14 13:20:37,646 - INFO - Item containing 'backpack' added to cart.
+2025-08-14 13:20:37,682 - INFO - 2 items in the cart!!
+2025-08-14 13:20:39,835 - INFO - ✅ PASSED: test_add_items_to_cart
+2025-08-14 13:20:39,835 - INFO - 🏁 Finished: test_add_items_to_cart
+2025-08-14 13:20:39,837 - INFO - ============================================================
+2025-08-14 13:20:39,837 - INFO - TEST SESSION SUMMARY
+2025-08-14 13:20:39,837 - INFO - ============================================================
+2025-08-14 13:20:39,837 - INFO - Total Tests: 1
+2025-08-14 13:20:39,837 - INFO - Passed: 1
+2025-08-14 13:20:39,837 - INFO - Failed: 0
+2025-08-14 13:20:39,837 - INFO - Duration: 4.67s
+2025-08-14 13:20:39,837 - INFO - Exit Status: 0
+2025-08-14 13:20:39,837 - INFO - Session finished: 2025-08-14 13:20:39
+2025-08-14 13:20:39,838 - INFO - 📊 HTML Report: C:\Users\blace\repos\ecommerce_selenium\reports\add_to_cart_report_2025-08-14_1320.html
+2025-08-14 13:20:39,838 - INFO - ============================================================

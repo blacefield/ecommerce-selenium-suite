@@ -1,0 +1,180 @@
+
+E2E_CHECKOUT TEST SESSION
+Started: 2025-08-13 16:31:12
+============================================================
+
+2025-08-13 16:31:12,842 - INFO - Logging initialized for pytest session.
+2025-08-13 16:31:12,847 - INFO - Test session started with 1 test file(s)
+2025-08-13 16:31:13,174 - INFO - *******Starting*******: test_single_item_e2e_purchase
+2025-08-13 16:31:13,175 - INFO - ====== WebDriver manager ======
+2025-08-13 16:31:13,860 - INFO - Get LATEST chromedriver version for google-chrome
+2025-08-13 16:31:13,882 - INFO - Get LATEST chromedriver version for google-chrome
+2025-08-13 16:31:13,907 - INFO - Driver [C:\Users\blace\.wdm\drivers\chromedriver\win64\139.0.7258.68\chromedriver-win32/chromedriver.exe] found in cache
+2025-08-13 16:31:15,175 - INFO - 🛒 Starting E2E test: single_item_purchase
+2025-08-13 16:31:15,183 - INFO - ✅ Verified inventory page loaded after login
+2025-08-13 16:31:15,231 - INFO - Successfully added item containing 'backpack' to cart
+2025-08-13 16:31:15,241 - INFO - Cart summary: 1 items in cart, expected 1
+2025-08-13 16:31:15,241 - INFO - ✅ Successfully added 1 items to cart
+2025-08-13 16:31:15,283 - INFO - Cart verification: Expected 1, found 1 - ✓
+2025-08-13 16:31:15,283 - INFO - ✅ Cart contents verified
+2025-08-13 16:31:15,325 - INFO - Successfully navigated to checkout page
+2025-08-13 16:31:15,325 - INFO - ✅ Successfully navigated to checkout
+2025-08-13 16:31:15,325 - INFO - Starting full checkout flow for Test User
+2025-08-13 16:31:15,451 - INFO - Filled checkout info: Test User, 12345
+2025-08-13 16:31:20,548 - INFO - Successfully completed checkout information step
+2025-08-13 16:31:20,576 - INFO - Checkout overview - Items: 1, Subtotal: $29.99, Tax: $2.40, Total: $32.39
+2025-08-13 16:31:20,613 - INFO - Clicked finish button
+2025-08-13 16:31:20,633 - INFO - Purchase completed! Message: 'Thank you for your order!'
+2025-08-13 16:31:20,634 - INFO - ✅ Full checkout flow completed successfully!
+2025-08-13 16:31:20,634 - INFO - ✅ Purchase completed! Total: $32.39
+2025-08-13 16:31:20,675 - INFO - Successfully returned to inventory from checkout complete
+2025-08-13 16:31:20,675 - INFO - ✅ Successfully returned to inventory page
+2025-08-13 16:31:20,681 - INFO - ✅ E2E test completed successfully - cart is now empty
+2025-08-13 16:31:20,681 - INFO - ✅ PASSED: test_single_item_e2e_purchase
+2025-08-13 16:31:22,808 - INFO - *******Finished*******: test_single_item_e2e_purchase
+2025-08-13 16:31:22,808 - INFO - *******Starting*******: test_multiple_items_e2e_purchase
+2025-08-13 16:31:22,809 - INFO - ====== WebDriver manager ======
+2025-08-13 16:31:23,481 - INFO - Get LATEST chromedriver version for google-chrome
+2025-08-13 16:31:23,499 - INFO - Get LATEST chromedriver version for google-chrome
+2025-08-13 16:31:23,516 - INFO - Driver [C:\Users\blace\.wdm\drivers\chromedriver\win64\139.0.7258.68\chromedriver-win32/chromedriver.exe] found in cache
+2025-08-13 16:31:24,763 - INFO - 🛒 Starting E2E test: multiple_items_purchase with 3 items
+2025-08-13 16:31:24,769 - INFO - ✅ Inventory page loaded
+2025-08-13 16:31:24,819 - INFO - Successfully added item containing 'backpack' to cart
+2025-08-13 16:31:24,868 - INFO - Successfully added item containing 'shirt' to cart
+2025-08-13 16:31:24,909 - INFO - Successfully added item containing 'bike' to cart
+2025-08-13 16:31:24,917 - INFO - Cart summary: 3 items in cart, expected 3
+2025-08-13 16:31:24,917 - INFO - ✅ Added 3 out of 3 requested items
+2025-08-13 16:31:24,958 - INFO - Cart verification: Expected 3, found 3 - ✓
+2025-08-13 16:31:24,999 - INFO - Successfully navigated to checkout page
+2025-08-13 16:31:24,999 - INFO - ✅ Proceeded to checkout with multiple items
+2025-08-13 16:31:24,999 - INFO - Starting full checkout flow for Multi Buyer
+2025-08-13 16:31:25,128 - INFO - Filled checkout info: Multi Buyer, 67890
+2025-08-13 16:31:30,223 - INFO - Successfully completed checkout information step
+2025-08-13 16:31:30,252 - INFO - Checkout overview - Items: 3, Subtotal: $55.97, Tax: $4.48, Total: $60.45
+2025-08-13 16:31:30,290 - INFO - Clicked finish button
+2025-08-13 16:31:30,311 - INFO - Purchase completed! Message: 'Thank you for your order!'
+2025-08-13 16:31:30,311 - INFO - ✅ Full checkout flow completed successfully!
+2025-08-13 16:31:30,311 - INFO - ✅ Multi-item purchase completed! Items: 3, Total: $60.45
+2025-08-13 16:31:30,351 - INFO - Successfully returned to inventory from checkout complete
+2025-08-13 16:31:30,351 - INFO - ✅ Multi-item E2E test completed successfully
+2025-08-13 16:31:30,352 - INFO - ✅ PASSED: test_multiple_items_e2e_purchase
+2025-08-13 16:31:32,484 - INFO - *******Finished*******: test_multiple_items_e2e_purchase
+2025-08-13 16:31:32,485 - INFO - *******Starting*******: test_checkout_validation_errors
+2025-08-13 16:31:32,486 - INFO - ====== WebDriver manager ======
+2025-08-13 16:31:33,183 - INFO - Get LATEST chromedriver version for google-chrome
+2025-08-13 16:31:33,211 - INFO - Get LATEST chromedriver version for google-chrome
+2025-08-13 16:31:33,263 - INFO - Driver [C:\Users\blace\.wdm\drivers\chromedriver\win64\139.0.7258.68\chromedriver-win32/chromedriver.exe] found in cache
+2025-08-13 16:31:34,513 - INFO - 🚨 Testing checkout form validation
+2025-08-13 16:31:34,565 - INFO - Successfully added item containing 'backpack' to cart
+2025-08-13 16:31:34,574 - INFO - Cart summary: 1 items in cart, expected 1
+2025-08-13 16:31:34,656 - INFO - Successfully navigated to checkout page
+2025-08-13 16:31:34,656 - INFO - Testing validation: Error: First Name is required
+2025-08-13 16:31:34,779 - INFO - Filled checkout info:  Doe, 12345
+2025-08-13 16:31:34,829 - ERROR - Checkout info validation failed: Error: First Name is required
+2025-08-13 16:31:34,829 - INFO - ✅ Validation correctly failed: Error: First Name is required
+2025-08-13 16:31:34,829 - INFO - Testing validation: Error: Last Name is required
+2025-08-13 16:31:34,943 - INFO - Filled checkout info: John , 12345
+2025-08-13 16:31:40,033 - INFO - Successfully completed checkout information step
+2025-08-13 16:31:40,221 - ERROR - ❌ FAILED: test_checkout_validation_errors
+2025-08-13 16:31:40,221 - ERROR -    Reason: self = <tests.e2e_checkout.TestE2ECheckoutFlow object at 0x0000012A0D5E09D0>
+2025-08-13 16:31:42,353 - INFO - *******Finished*******: test_checkout_validation_errors
+2025-08-13 16:31:42,353 - INFO - *******Starting*******: test_parameterized_e2e_scenarios[0]
+2025-08-13 16:31:42,354 - INFO - ====== WebDriver manager ======
+2025-08-13 16:31:43,027 - INFO - Get LATEST chromedriver version for google-chrome
+2025-08-13 16:31:43,049 - INFO - Get LATEST chromedriver version for google-chrome
+2025-08-13 16:31:43,066 - INFO - Driver [C:\Users\blace\.wdm\drivers\chromedriver\win64\139.0.7258.68\chromedriver-win32/chromedriver.exe] found in cache
+2025-08-13 16:31:44,326 - INFO - 🔄 Running parameterized E2E test: single_item_purchase
+2025-08-13 16:31:44,375 - INFO - Successfully added item containing 'backpack' to cart
+2025-08-13 16:31:44,384 - INFO - Cart summary: 1 items in cart, expected 1
+2025-08-13 16:31:44,463 - INFO - Successfully navigated to checkout page
+2025-08-13 16:31:44,464 - INFO - Starting full checkout flow for Test User
+2025-08-13 16:31:44,586 - INFO - Filled checkout info: Test User, 12345
+2025-08-13 16:31:49,679 - INFO - Successfully completed checkout information step
+2025-08-13 16:31:49,707 - INFO - Checkout overview - Items: 1, Subtotal: $29.99, Tax: $2.40, Total: $32.39
+2025-08-13 16:31:49,744 - INFO - Clicked finish button
+2025-08-13 16:31:49,764 - INFO - Purchase completed! Message: 'Thank you for your order!'
+2025-08-13 16:31:49,764 - INFO - ✅ Full checkout flow completed successfully!
+2025-08-13 16:31:49,764 - INFO - ✅ Parameterized test passed: single_item_purchase
+2025-08-13 16:31:49,765 - INFO - ✅ PASSED: test_parameterized_e2e_scenarios[0]
+2025-08-13 16:31:51,883 - INFO - *******Finished*******: test_parameterized_e2e_scenarios[0]
+2025-08-13 16:31:51,883 - INFO - *******Starting*******: test_parameterized_e2e_scenarios[1]
+2025-08-13 16:31:51,883 - INFO - ====== WebDriver manager ======
+2025-08-13 16:31:52,551 - INFO - Get LATEST chromedriver version for google-chrome
+2025-08-13 16:31:52,571 - INFO - Get LATEST chromedriver version for google-chrome
+2025-08-13 16:31:52,589 - INFO - Driver [C:\Users\blace\.wdm\drivers\chromedriver\win64\139.0.7258.68\chromedriver-win32/chromedriver.exe] found in cache
+2025-08-13 16:31:53,915 - INFO - 🔄 Running parameterized E2E test: multiple_items_purchase
+2025-08-13 16:31:53,972 - INFO - Successfully added item containing 'backpack' to cart
+2025-08-13 16:31:54,022 - INFO - Successfully added item containing 'shirt' to cart
+2025-08-13 16:31:54,063 - INFO - Successfully added item containing 'bike' to cart
+2025-08-13 16:31:54,072 - INFO - Cart summary: 3 items in cart, expected 3
+2025-08-13 16:31:54,159 - INFO - Successfully navigated to checkout page
+2025-08-13 16:31:54,159 - INFO - Starting full checkout flow for Multi Buyer
+2025-08-13 16:31:54,285 - INFO - Filled checkout info: Multi Buyer, 67890
+2025-08-13 16:31:59,381 - INFO - Successfully completed checkout information step
+2025-08-13 16:31:59,408 - INFO - Checkout overview - Items: 3, Subtotal: $55.97, Tax: $4.48, Total: $60.45
+2025-08-13 16:31:59,447 - INFO - Clicked finish button
+2025-08-13 16:31:59,468 - INFO - Purchase completed! Message: 'Thank you for your order!'
+2025-08-13 16:31:59,468 - INFO - ✅ Full checkout flow completed successfully!
+2025-08-13 16:31:59,468 - INFO - ✅ Parameterized test passed: multiple_items_purchase
+2025-08-13 16:31:59,468 - INFO - ✅ PASSED: test_parameterized_e2e_scenarios[1]
+2025-08-13 16:32:01,592 - INFO - *******Finished*******: test_parameterized_e2e_scenarios[1]
+2025-08-13 16:32:01,593 - INFO - *******Starting*******: test_parameterized_e2e_scenarios[2]
+2025-08-13 16:32:01,593 - INFO - ====== WebDriver manager ======
+2025-08-13 16:32:02,260 - INFO - Get LATEST chromedriver version for google-chrome
+2025-08-13 16:32:02,278 - INFO - Get LATEST chromedriver version for google-chrome
+2025-08-13 16:32:02,297 - INFO - Driver [C:\Users\blace\.wdm\drivers\chromedriver\win64\139.0.7258.68\chromedriver-win32/chromedriver.exe] found in cache
+2025-08-13 16:32:03,565 - INFO - 🔄 Running parameterized E2E test: all_items_purchase
+2025-08-13 16:32:03,618 - INFO - Successfully added item containing 'backpack' to cart
+2025-08-13 16:32:03,661 - INFO - Successfully added item containing 'bike' to cart
+2025-08-13 16:32:03,711 - INFO - Successfully added item containing 'shirt' to cart
+2025-08-13 16:32:03,767 - INFO - Successfully added item containing 'jacket' to cart
+2025-08-13 16:32:03,827 - INFO - Successfully added item containing 'onesie' to cart
+2025-08-13 16:32:03,868 - INFO - Successfully added item containing 'light' to cart
+2025-08-13 16:32:03,876 - INFO - Cart summary: 4 items in cart, expected 6
+2025-08-13 16:32:03,957 - INFO - Successfully navigated to checkout page
+2025-08-13 16:32:03,957 - INFO - Starting full checkout flow for Power Shopper
+2025-08-13 16:32:04,084 - INFO - Filled checkout info: Power Shopper, 99999
+2025-08-13 16:32:09,181 - INFO - Successfully completed checkout information step
+2025-08-13 16:32:09,210 - INFO - Checkout overview - Items: 4, Subtotal: $103.96, Tax: $8.32, Total: $112.28
+2025-08-13 16:32:09,210 - ERROR - Items count mismatch: expected 6, found 4
+2025-08-13 16:32:09,216 - ERROR - ❌ FAILED: test_parameterized_e2e_scenarios[2]
+2025-08-13 16:32:09,216 - ERROR -    Reason: self = <tests.e2e_checkout.TestE2ECheckoutFlow object at 0x0000012A0D5E1A90>
+2025-08-13 16:32:11,345 - INFO - *******Finished*******: test_parameterized_e2e_scenarios[2]
+2025-08-13 16:32:11,346 - INFO - *******Starting*******: test_cart_to_inventory_navigation
+2025-08-13 16:32:11,346 - INFO - ====== WebDriver manager ======
+2025-08-13 16:32:12,063 - INFO - Get LATEST chromedriver version for google-chrome
+2025-08-13 16:32:12,081 - INFO - Get LATEST chromedriver version for google-chrome
+2025-08-13 16:32:12,102 - INFO - Driver [C:\Users\blace\.wdm\drivers\chromedriver\win64\139.0.7258.68\chromedriver-win32/chromedriver.exe] found in cache
+2025-08-13 16:32:13,373 - INFO - 🔄 Testing cart navigation flow
+2025-08-13 16:32:13,440 - INFO - Successfully added item containing 'shirt' to cart
+2025-08-13 16:32:13,450 - INFO - Cart summary: 1 items in cart, expected 1
+2025-08-13 16:32:13,485 - INFO - ✅ Successfully navigated to cart
+2025-08-13 16:32:13,529 - INFO - Successfully returned to inventory page
+2025-08-13 16:32:13,531 - INFO - ✅ Successfully returned to inventory from cart
+2025-08-13 16:32:13,531 - INFO - ✅ PASSED: test_cart_to_inventory_navigation
+2025-08-13 16:32:15,637 - INFO - *******Finished*******: test_cart_to_inventory_navigation
+2025-08-13 16:32:15,637 - INFO - *******Starting*******: test_checkout_overview_calculations
+2025-08-13 16:32:15,638 - INFO - ====== WebDriver manager ======
+2025-08-13 16:32:16,308 - INFO - Get LATEST chromedriver version for google-chrome
+2025-08-13 16:32:16,330 - INFO - Get LATEST chromedriver version for google-chrome
+2025-08-13 16:32:16,349 - INFO - Driver [C:\Users\blace\.wdm\drivers\chromedriver\win64\139.0.7258.68\chromedriver-win32/chromedriver.exe] found in cache
+2025-08-13 16:32:17,606 - INFO - ** Testing checkout calculations
+2025-08-13 16:32:17,656 - INFO - Successfully added item containing 'backpack' to cart
+2025-08-13 16:32:17,704 - INFO - Successfully added item containing 'shirt' to cart
+2025-08-13 16:32:17,712 - INFO - Cart summary: 2 items in cart, expected 2
+2025-08-13 16:32:17,810 - INFO - Successfully navigated to checkout page
+2025-08-13 16:32:17,934 - INFO - Filled checkout info: John Doe, 12345
+2025-08-13 16:32:23,029 - INFO - Successfully completed checkout information step
+2025-08-13 16:32:23,057 - INFO - Checkout overview - Items: 2, Subtotal: $45.98, Tax: $3.68, Total: $49.66
+2025-08-13 16:32:23,058 - INFO - ✅ Calculations verified: $45.98 + $3.68 = $49.66
+2025-08-13 16:32:23,058 - INFO - ✅ PASSED: test_checkout_overview_calculations
+2025-08-13 16:32:25,186 - INFO - *******Finished*******: test_checkout_overview_calculations
+2025-08-13 16:32:25,188 - INFO - ============================================================
+2025-08-13 16:32:25,188 - INFO - TEST SESSION SUMMARY
+2025-08-13 16:32:25,188 - INFO - ============================================================
+2025-08-13 16:32:25,188 - INFO - Total Tests: 8
+2025-08-13 16:32:25,188 - INFO - Passed: 6
+2025-08-13 16:32:25,188 - INFO - Failed: 2
+2025-08-13 16:32:25,188 - INFO - Exit Status: 1
+2025-08-13 16:32:25,188 - INFO - Session finished: 2025-08-13 16:32:25
+2025-08-13 16:32:25,188 - INFO - ============================================================
