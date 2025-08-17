@@ -1,0 +1,50 @@
+# E2E Test Automation Workflow
+name: E2E Tests
+
+
+on:
+  # Trigger on pushes to main branch, pull requests, and manual trigger 
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+# Define the jobs that will run
+jobs:
+  e2e-tests:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # Get the code
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    # Set up Python environment
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        # Cache pip dependencies for faster, future builds
+        cache: 'pip'
+        
+    # Install project dependencies
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+      
+    # Run your Selenium E2E tests
+    - name: Run E2E tests
+      run: pytest -v tests/e2e_checkout.py::TestE2ECheckoutFlow::test_single_item_e2e_purchase
+      
+    # Upload test artifacts if tests fail (for debugging)
+    - name: Upload test artifacts
+      uses: actions/upload-artifact@v4
+      if: failure()
+      with:
+        name: test-artifacts
+        path: |
+          test-results/
+          screenshots/
+        retention-days: 7
