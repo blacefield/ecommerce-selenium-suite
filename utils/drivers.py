@@ -8,6 +8,7 @@ from selenium.webdriver.edge.service import Service as EdgeService
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
+import os
 
 def create_driver(browser="chrome", headless=True):
     """
@@ -31,7 +32,7 @@ def _create_chrome_driver(headless=True):
     """Create Chrome WebDriver with options."""
     options = ChromeOptions()
     
-    if headless:
+    if headless or os.getenv('HEADLESS') == 'true':
         options.add_argument("--headless=new")
     
     # Common Chrome arguments
@@ -48,7 +49,20 @@ def _create_chrome_driver(headless=True):
     }
     options.add_experimental_option("prefs", preferences)
     
-    service = ChromeService(ChromeDriverManager().install())
+    # Adjust Chrome browser based on Runtime 
+    chromedriver_path = os.getenv('CHROMEDRIVER_PATH')
+    if chromedriver_path:
+        # Use explicit ChromeDriver path (set by GitHub Actions)
+        service = ChromeService(chromedriver_path)
+        print(f"Using ChromeDriver from explicit path: {chromedriver_path}")
+    elif os.getenv('USE_SYSTEM_CHROMEDRIVER') == 'true':
+        # Use system PATH to find ChromeDriver (installed by GitHub Actions)
+        service = ChromeService()
+        print("Using system ChromeDriver from PATH")
+    else:
+        # Use WebDriver Manager for local development
+        service = ChromeService(ChromeDriverManager().install())
+        print("Using WebDriver Manager for ChromeDriver locally")
     return webdriver.Chrome(service=service, options=options)
 
 def _create_firefox_driver(headless=True):
@@ -73,7 +87,7 @@ def _create_edge_driver(headless=True):
     """Create Edge WebDriver with options."""
     options = EdgeOptions()
     
-    if headless:
+    if headless or os.getenv('HEADLESS') == 'true':
         options.add_argument("--headless=new")
     
     # Common Edge arguments (similar to Chrome since Edge is Chromium-based)
@@ -90,5 +104,12 @@ def _create_edge_driver(headless=True):
     }
     options.add_experimental_option("prefs", preferences)
     
-    service = EdgeService(EdgeChromiumDriverManager().install())  #("C:\WebDrivers\msedgedriver.exe") #Local repo
+    # Handle CI vs local development
+    if os.getenv('CI') == 'true':
+        service = EdgeService()  # Use system PATH
+    else:
+        # Use local path for development (fixed escape sequence)
+        service = EdgeService(r"C:\WebDrivers\msedgedriver.exe")
+
     return webdriver.Edge(service=service, options=options)
+
