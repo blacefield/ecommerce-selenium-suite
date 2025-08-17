@@ -67,7 +67,7 @@ Planned:
 
 ### Installation
 1. Clone the repository:
-    git clone https://github.com/YOUR_USERNAME/ecommerce-selenium-suite.git
+    git clone https://github.com/blacefield/ecommerce-selenium-suite.git
     cd ecommerce-selenium-suite
 
 2. Install dependencies:

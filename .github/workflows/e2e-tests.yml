@@ -3,11 +3,11 @@ name: E2E Tests
 
 
 on:
-  # Trigger on pushes to main branch, pull requests, and manual trigger 
+  # Trigger on pushes to master branch, pull requests, and manual trigger 
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
   workflow_dispatch:
 
 # Define the jobs that will run
@@ -48,3 +48,4 @@ jobs:
           test-results/
           screenshots/
         retention-days: 7
+        if-no-files-found: warn #Get rid of false negatives when no artifacts are found
