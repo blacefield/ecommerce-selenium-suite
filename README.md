@@ -35,15 +35,15 @@ Benefits:
 ## Project Structure
 
 ecommerce-selenium-suite/
-    data/ -> Test datasets (JSON)
-    logs/ -> Execution logs
-    pages/ -> POM classes
-    reports/ -> HTML reports
-    tests/ -> Test cases
-    utils/ -> Helpers
-    conftest.py -> Pytest fixtures
-    requirements.txt 
-    SETUP.md -> Setup details and instructions
+    -data/ -> Test datasets (JSON)
+    -logs/ -> Execution logs
+    -pages/ -> POM classes
+    -reports/ -> HTML reports
+    -tests/ -> Test cases
+    -utils/ -> Helpers
+    -conftest.py -> Pytest fixtures
+    -requirements.txt 
+    -SETUP.md -> Setup details and instructions
 
 ---
 
