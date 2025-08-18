@@ -1,6 +1,6 @@
 # E-Commerce Selenium Automation Suite
 
-[![CI](https://github.com/blacefield/ecommerce-selenium-suite/actions/workflows/e2e-tests.yml/badge.svg)](https://github.com/blacefield/ecommerce-selenium-suite/actions)
+[![E2E Tests](https://github.com/blacefield/ecommerce-selenium-suite/actions/workflows/e2e-tests.yml/badge.svg?branch=master)](https://github.com/blacefield/ecommerce-selenium-suite/actions/workflows/e2e-tests.yml)
 
 ## Overview
 This project demonstrates **code-first Selenium test automation** using Python and pytest.  
