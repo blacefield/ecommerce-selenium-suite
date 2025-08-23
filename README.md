@@ -14,6 +14,13 @@ It showcases:
 
 ---
 
+## Author
+**Brandon Lacefield**  
+QA Automation Engineer
+LinkedIn profile: https://www.linkedin.com/in/brandon-lacefield-722034175/  
+
+---
+
 ## Why This Project Matters
 As part of my QA Automation portfolio, this project highlights my ability to:
 - Build maintainable automation frameworks from scratch
@@ -64,7 +71,3 @@ ecommerce-selenium-suite/
 Planned (Future Improvements):
 - API-level validation
 - Edge cases (empty cart checkout, out-of-stock items)
-
-## Author
-**Brandon Lacefield**  
-QA Automation Engineer  
